@@ -19,8 +19,6 @@ intents:
     use_entities: true
 - bot_challenge:
     use_entities: true
-- give_test_answer:
-    use_entities: true
 - give_group:
     use_entities: true
 - give_section:
@@ -28,23 +26,49 @@ intents:
 - ask_schedule:
     use_entities: true
 entities:
-- group
 - section
-slots: {}
+- group
+slots:
+  section:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    values:
+    - m1
+    - m2
+  group:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    values:
+    - alternant
+    - classic
 responses:
   utter_greet:
-  - text: Hey! How are you?
+  - text: Hey, comment ça va?
+  - text: Wesh!
+  - text: Salut!
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
   utter_did_that_help:
-  - text: Did that help you?
+  - text: Ça t’a aidé ?
   utter_happy:
-  - text: Great, carry on!
+  - text: Super, continue !
   utter_goodbye:
-  - text: Bye
+  - text: Chiao
+  - text: à plus!
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_ask_group:
+  - text: Quel est ton groupe ?
+  - text: Donne moi ton groupe, s’il te plaîs.
+  utter_ask_section:
+  - text: Quelle est ta section?
+  - text: J’ai besoin de ta section pour ça.
+  - text: Dis moi ta section.
 actions:
 - action_schedule
 forms: {}
